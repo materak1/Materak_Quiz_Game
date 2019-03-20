@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Quiz Time</string>
+    <string name="welcome_txt">It\'s Quiz Time!</string>
+    <string name="welcome_msg">Welcome</string>
+    <string name="start_btn">Get Started</string>
+    <string name="email_hint">Email</string>
+    <string name="pass_hint">Password</string>
+    <string name="login_text">Login</string>
+    <string name="reg_text">Not a member? Register</string>
+    <string name="create_account">Create Account</string>
+    <string name="return_to_login">Already a member? Sign In</string>
+    <string name="dob_hint">Date of Birth</string>
+    <string name="family_hint">Family Name</string>
+    <string name="first_hint">First Name</string>
+</resources>

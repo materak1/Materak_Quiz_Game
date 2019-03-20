@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/welcome_img"
+            android:layout_above="@+id/welcome_msg"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:id="@+id/welcome_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="48sp"
+            android:text="@string/welcome_msg"
+            android:textColor="#FFF"/>
+
+        <TextView
+            android:id="@+id/welcome_txt"
+            android:layout_below="@+id/welcome_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#FFF"
+            android:textSize="36sp"
+            android:text="@string/welcome_txt"/>
+
+        <Button
+            android:id="@+id/start_btn"
+            android:layout_below="@+id/welcome_txt"
+            android:layout_centerInParent="true"
+            android:background="@color/colorAccent"
+            android:text="@string/start_btn"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
