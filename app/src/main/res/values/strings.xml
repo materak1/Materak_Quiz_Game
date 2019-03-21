@@ -12,4 +12,12 @@
     <string name="dob_hint">Date of Birth</string>
     <string name="family_hint">Family Name</string>
     <string name="first_hint">First Name</string>
+    <string name="game_id">Game ID:</string>
+    <string name="question_5">Question 5:</string>
+    <string name="question_4">Question 4:</string>
+    <string name="question_3">Question 3:</string>
+    <string name="question_2">Question 2:</string>
+    <string name="question_1">Question 1:</string>
+    <string name="score">Score:</string>
+    <string name="start_new_game">Start New Game</string>
 </resources>

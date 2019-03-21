@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".DashboardActivity">
 
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/new_game"
+            android:layout_centerInParent="true"
+            android:background="@color/colorAccent"
+            android:text="@string/start_new_game"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ListView
+            android:id="@+id/game_list"
+            android:layout_below="@+id/new_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></ListView>
+
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>
