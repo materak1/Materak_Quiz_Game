@@ -1,6 +1,7 @@
 package utils;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.sql.Array;
 import java.text.DateFormat;
@@ -22,15 +23,27 @@ public class User {
     List<Game> games = new ArrayList<>();
 //    ArrayList games;
 
-    User() {}
+//    public User() {}
 
-    public User (String user_id, String first_name, String family_name, String date_of_birth, String email, String password) {
-//        this.user_id = user_id;
+    public User (int user_id, String first_name, String family_name, String date_of_birth, String email, String password) {
+        this.user_id = user_id;
         this.first_name = first_name;
         this.family_name = family_name;
         this.date_of_birth = date_of_birth;
         this.email = email;
         this.password = password;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public boolean checkFirst() {
@@ -62,6 +75,8 @@ public class User {
     public boolean checkPassword() {
         Pattern pattern = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})");
         Matcher matcher = pattern.matcher(this.password);
+        String pass_msg = "The current password is " + this.password;
+        Log.d("SQL", pass_msg);
         return matcher.matches();
     }
 

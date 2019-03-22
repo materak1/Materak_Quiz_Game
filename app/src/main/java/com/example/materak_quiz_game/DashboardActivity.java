@@ -23,7 +23,7 @@ public class DashboardActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.game_list);
         listView.setAdapter(adapter);
 
-        Game new_game = new Game(1,0, 1, 1, 0, 1);
-        adapter.add(new_game);
+//        Game new_game = new Game(1,0, 1, 1, 0, 1);
+//        adapter.add(new_game);
     }
 }

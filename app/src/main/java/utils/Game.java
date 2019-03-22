@@ -12,7 +12,7 @@ public class Game {
     int score;
     User user;
 
-    public Game () {}
+    public Game() {}
 
     public Game (int game_id, int user_id, int question_1, int question_2, int question_3, int question_4, int question_5) {
         this.user_id = user_id;
