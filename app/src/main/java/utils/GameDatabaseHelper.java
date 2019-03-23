@@ -110,7 +110,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Insert a post into the database
-    public void addGame(Game game, User user) {
+    public void addGame(Game game) {
         // Create and/or open the database for writing
         SQLiteDatabase db = getWritableDatabase();
 
@@ -121,7 +121,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             // The user might already exist in the database (i.e. the same user created multiple posts).
 
             ContentValues values = new ContentValues();
-            values.put(KEY_GAME_USER_ID_FK, user.user_id);
+            values.put(KEY_GAME_USER_ID_FK, game.user_id);
             values.put(KEY_GAME_Q1, game.question_1);
             values.put(KEY_GAME_Q2, game.question_2);
             values.put(KEY_GAME_Q3, game.question_3);
@@ -131,6 +131,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_GAMES, null, values);
             db.setTransactionSuccessful();
+            Log.d(TAG, "Successfully added game");
         } catch (Exception e) {
             Log.d(TAG, "Error while trying to add post to database");
         } finally {
@@ -251,31 +252,71 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
 //                new String[] { String.valueOf(user.userName) });
 //    }
 
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
+//    public List<User> getAllUsers() {
+//        List<User> users = new ArrayList<>();
+//
+//        // SELECT * FROM POSTS
+//        // LEFT OUTER JOIN USERS
+//        // ON POSTS.KEY_POST_USER_ID_FK = USERS.KEY_USER_ID
+//        String POSTS_SELECT_QUERY =
+//                String.format("SELECT * FROM %s",
+//                        TABLE_USERS);
+//
+//        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
+//        // disk space scenarios)
+//        SQLiteDatabase db = getReadableDatabase();
+//        Cursor cursor = db.rawQuery(POSTS_SELECT_QUERY, null);
+//        try {
+//            if (cursor.moveToFirst()) {
+//                do {
+//                    User newUser = new User(0,"","","",cursor.getString(cursor.getColumnIndex(KEY_USER_EMAIL)),cursor.getString(cursor.getColumnIndex(KEY_USER_PASSWORD)));
+////                    newUser.email = cursor.getString(cursor.getColumnIndex(KEY_USER_EMAIL));
+////                    newUser.profilePictureUrl = cursor.getString(cursor.getColumnIndex(KEY_USER_PROFILE_PICTURE_URL));
+//
+////                    Post newPost = new Post();
+////                    newPost.text = cursor.getString(cursor.getColumnIndex(KEY_POST_TEXT));
+////                    newPost.user = newUser;
+//                    users.add(newUser);
+//                } while(cursor.moveToNext());
+//            } else {
+//                Log.d(TAG, "No records found");
+//            }
+//        } catch (Exception e) {
+//            Log.d(TAG, "Error while trying to get posts from database");
+//        } finally {
+//            if (cursor != null && !cursor.isClosed()) {
+//                cursor.close();
+//            }
+//        }
+//        return users;
+//    }
+
+    public List<Game> getUserGames(int user_id) {
+        List<Game> games = new ArrayList<>();
 
         // SELECT * FROM POSTS
         // LEFT OUTER JOIN USERS
         // ON POSTS.KEY_POST_USER_ID_FK = USERS.KEY_USER_ID
         String POSTS_SELECT_QUERY =
-                String.format("SELECT * FROM %s",
-                        TABLE_USERS);
+                String.format("SELECT * FROM %s WHERE %s = ?",
+                        TABLE_GAMES, KEY_USER_ID);
 
         // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
         // disk space scenarios)
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery(POSTS_SELECT_QUERY, null);
+        Cursor cursor = db.rawQuery(POSTS_SELECT_QUERY, new String[]{String.valueOf(user_id)});
         try {
             if (cursor.moveToFirst()) {
                 do {
-                    User newUser = new User(0,"","","",cursor.getString(cursor.getColumnIndex(KEY_USER_EMAIL)),cursor.getString(cursor.getColumnIndex(KEY_USER_PASSWORD)));
-//                    newUser.email = cursor.getString(cursor.getColumnIndex(KEY_USER_EMAIL));
-//                    newUser.profilePictureUrl = cursor.getString(cursor.getColumnIndex(KEY_USER_PROFILE_PICTURE_URL));
-
-//                    Post newPost = new Post();
-//                    newPost.text = cursor.getString(cursor.getColumnIndex(KEY_POST_TEXT));
-//                    newPost.user = newUser;
-                    users.add(newUser);
+                    Log.d(TAG, "Found game records");
+                    Game newGame = new Game(0,0,0,"","",0,0,0);
+                    newGame.game_id = cursor.getInt(cursor.getColumnIndex(KEY_GAME_ID));
+                    newGame.question_1 = cursor.getInt(cursor.getColumnIndex(KEY_GAME_Q1));
+                    newGame.question_2 = cursor.getString(cursor.getColumnIndex(KEY_GAME_Q2));
+                    newGame.question_3 = cursor.getString(cursor.getColumnIndex(KEY_GAME_Q3));
+                    newGame.question_4 = cursor.getInt(cursor.getColumnIndex(KEY_GAME_Q4));
+                    newGame.question_5 = cursor.getInt(cursor.getColumnIndex(KEY_GAME_Q5));
+                    games.add(newGame);
                 } while(cursor.moveToNext());
             } else {
                 Log.d(TAG, "No records found");
@@ -287,8 +328,49 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 cursor.close();
             }
         }
-        return users;
+        return games;
     }
+
+    public List<Game> getAllGames() {
+        List<Game> games = new ArrayList<>();
+
+        // SELECT * FROM POSTS
+        // LEFT OUTER JOIN USERS
+        // ON POSTS.KEY_POST_USER_ID_FK = USERS.KEY_USER_ID
+        String POSTS_SELECT_QUERY =
+                String.format("SELECT * FROM %s",
+                        TABLE_GAMES, KEY_USER_ID);
+
+        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
+        // disk space scenarios)
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(POSTS_SELECT_QUERY, null);
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    Log.d(TAG, "Found game records");
+                    Game newGame = new Game(0,0,0,"","",0,0,0);
+                    newGame.game_id = cursor.getInt(cursor.getColumnIndex(KEY_GAME_ID));
+                    newGame.question_1 = cursor.getInt(cursor.getColumnIndex(KEY_GAME_Q1));
+                    newGame.question_2 = cursor.getString(cursor.getColumnIndex(KEY_GAME_Q2));
+                    newGame.question_3 = cursor.getString(cursor.getColumnIndex(KEY_GAME_Q3));
+                    newGame.question_4 = cursor.getInt(cursor.getColumnIndex(KEY_GAME_Q4));
+                    newGame.question_5 = cursor.getInt(cursor.getColumnIndex(KEY_GAME_Q5));
+                    games.add(newGame);
+                } while(cursor.moveToNext());
+            } else {
+                Log.d(TAG, "No records found");
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error while trying to get posts from database");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+        return games;
+    }
+
     // Delete all posts and users in the database
     public void deleteAllPostsAndUsers() {
         SQLiteDatabase db = getWritableDatabase();

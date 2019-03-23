@@ -18,6 +18,24 @@
     <string name="question_3">Question 3:</string>
     <string name="question_2">Question 2:</string>
     <string name="question_1">Question 1:</string>
+    <string name="q5">Andrew Jackson once nearly beat a man to death on the floor of the senate. True or False?</string>
+    <string name="q4">Which countries has the United States invaded? (Select all that apply):</string>
+    <string name="q3">How many ships did Columbus have?</string>
+    <string name="q2">What was the name of the research ship Charles Darwin travelled with?</string>
+    <string name="q1">How many years did the \'One Hundred Years War\' last?</string>
+    <string name="years_99">99 Years</string>
     <string name="score">Score:</string>
     <string name="start_new_game">Start New Game</string>
+    <string name="main_instruct">You will be asked five questions, at least one will be multiple choice and at least one will have multiple answers</string>
+    <string name="years_100">100 Years</string>
+    <string name="years_101">101 Years</string>
+    <string name="years_116">116 Years</string>
+    <string name="q2_hint">Enter answer</string>
+    <string name="iraq_btn">Iraq</string>
+    <string name="iran_btn">Iran</string>
+    <string name="uzbek_btn">Uzbekistan</string>
+    <string name="afghan_btn">Afghanistan</string>
+    <string name="true_btn">True</string>
+    <string name="submit_quiz">Submit</string>
+    <string name="false_btn">False</string>
 </resources>
