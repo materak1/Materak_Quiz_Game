@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:textSize="12sp"
+            android:textSize="24sp"
             android:text="@string/game_id" />
 
         <TextView
@@ -22,53 +22,53 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:textSize="12sp"
+            android:textSize="24sp"
             android:text="@string/score" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical">-->
 
-        <TextView
-            android:id="@+id/tv_question_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:text="@string/question_1" />
-        <TextView
-            android:id="@+id/tv_question_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:text="@string/question_2" />
-        <TextView
-            android:id="@+id/tv_question_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:text="@string/question_3" />
-        <TextView
-            android:id="@+id/tv_question_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:text="@string/question_4" />
-        <TextView
-            android:id="@+id/tv_question_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:text="@string/question_5" />
-    </LinearLayout>
+        <!--<TextView-->
+            <!--android:id="@+id/tv_question_1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="12sp"-->
+            <!--android:text="@string/question_1" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_question_2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="12sp"-->
+            <!--android:text="@string/question_2" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_question_3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="12sp"-->
+            <!--android:text="@string/question_3" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_question_4"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="12sp"-->
+            <!--android:text="@string/question_4" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_question_5"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="12sp"-->
+            <!--android:text="@string/question_5" />-->
+    <!--</LinearLayout>-->
 
 
 </LinearLayout>

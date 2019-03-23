@@ -97,6 +97,8 @@ public class RegisterActivity extends AppCompatActivity {
             long new_id = helper.addOrUpdateUser(user);
             String id_msg = "New ID is " + String.valueOf(new_id);
             Log.d("SQL", id_msg);
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
 //            SecureRandom random = new SecureRandom();
 //            byte[] salt = new byte[16];
 //            random.nextBytes(salt);

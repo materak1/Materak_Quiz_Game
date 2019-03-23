@@ -54,21 +54,27 @@ public class DashboardActivity extends AppCompatActivity {
 //                int game_id = games.get(x).getGame_id();
                     Game curr_game = games.get(x);
                     int game_id = curr_game.getGame_id();
+                    int game_user_id = curr_game.getUser_id();
+                    int game_score = curr_game.getScore();
                     Log.d("GAME ID", String.valueOf(game_id));
+                    Log.d("USER ID", String.valueOf(game_user_id));
+                    Log.d("SCORE", String.valueOf(game_score));
                     adapter.add(curr_game);
                 }
 
-                List<Game> allGames = helper.getAllGames();
-                Log.d("All Game List Length", String.valueOf(allGames.size()));
-                for (int x = 0; x < allGames.size(); x++) {
-//                int game_id = games.get(x).getGame_id();
-                    Game curr_game = allGames.get(x);
-                    int game_id = curr_game.getGame_id();
-                    int game_user_id = curr_game.getUser_id();
-                    Log.d("GAME ID", String.valueOf(game_id));
-                    Log.d("USER ID", String.valueOf(game_user_id));
-//                    adapter.add(curr_game);
-                }
+//                List<Game> allGames = helper.getAllGames();
+//                Log.d("All Game List Length", String.valueOf(allGames.size()));
+//                for (int x = 0; x < allGames.size(); x++) {
+////                int game_id = games.get(x).getGame_id();
+//                    Game curr_game = allGames.get(x);
+//                    int game_id = curr_game.getGame_id();
+//                    int game_user_id = curr_game.getUser_id();
+//                    int game_score = curr_game.getScore();
+//                    Log.d("GAME ID", String.valueOf(game_id));
+//                    Log.d("USER ID", String.valueOf(game_user_id));
+//                    Log.d("SCORE", String.valueOf(game_score));
+////                    adapter.add(curr_game);
+//                }
             }
             catch(Exception e) {
                 Log.d("Error", String.valueOf(e));
@@ -81,14 +87,14 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void startBtn(int user_id) {
         Intent intent = new Intent(this, QuizActivity.class);
-        startActivity(intent);
         intent.putExtra("ID", user_id);
-        finish();
+        startActivity(intent);
+//        finish();
     }
 
     private void reLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-        finish();
+//        finish();
     }
 }

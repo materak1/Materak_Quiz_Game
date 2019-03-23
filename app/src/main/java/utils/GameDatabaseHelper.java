@@ -16,7 +16,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "SQL";
     private static GameDatabaseHelper sInstance;
 
-    private static final String DATABASE_NAME = "gameDatabase";
+    private static final String DATABASE_NAME = "gameDb";
     private static final int DATABASE_VERSION = 1;
 
     // Table Names
@@ -31,6 +31,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_GAME_Q3 = "q3";
     private static final String KEY_GAME_Q4 = "q4";
     private static final String KEY_GAME_Q5 = "q5";
+    private static final String KEY_GAME_SCORE = "score";
 
     // User Table Columns
     private static final String KEY_USER_ID = "id";
@@ -79,7 +80,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 KEY_GAME_Q2 + " TEXT" + "," +
                 KEY_GAME_Q3 + " TEXT" + "," +
                 KEY_GAME_Q4 + " TEXT" + "," +
-                KEY_GAME_Q5 + " TEXT" +
+                KEY_GAME_Q5 + " TEXT" + "," +
+                KEY_GAME_SCORE + " TEXT" +
                 ")";
 
         String CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USERS +
@@ -127,6 +129,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             values.put(KEY_GAME_Q3, game.question_3);
             values.put(KEY_GAME_Q4, game.question_4);
             values.put(KEY_GAME_Q5, game.question_5);
+            values.put(KEY_GAME_SCORE, game.score);
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_GAMES, null, values);
@@ -299,7 +302,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         // ON POSTS.KEY_POST_USER_ID_FK = USERS.KEY_USER_ID
         String POSTS_SELECT_QUERY =
                 String.format("SELECT * FROM %s WHERE %s = ?",
-                        TABLE_GAMES, KEY_USER_ID);
+                        TABLE_GAMES, KEY_GAME_USER_ID_FK);
 
         // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
         // disk space scenarios)
@@ -316,6 +319,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     newGame.question_3 = cursor.getString(cursor.getColumnIndex(KEY_GAME_Q3));
                     newGame.question_4 = cursor.getInt(cursor.getColumnIndex(KEY_GAME_Q4));
                     newGame.question_5 = cursor.getInt(cursor.getColumnIndex(KEY_GAME_Q5));
+                    newGame.score = cursor.getInt(cursor.getColumnIndex(KEY_GAME_SCORE));
                     games.add(newGame);
                 } while(cursor.moveToNext());
             } else {

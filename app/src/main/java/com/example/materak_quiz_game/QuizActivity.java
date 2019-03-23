@@ -28,7 +28,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         Intent intent = getIntent();
-        final int user_id = (int) intent.getLongExtra("ID", 0);
+        final int user_id = intent.getIntExtra("ID", 0);
         Log.d("INTENT USER ID", String.valueOf(user_id));
         new_game.setUser_id(user_id);
         final EditText q2 = findViewById(R.id.q2_et);
@@ -43,49 +43,58 @@ public class QuizActivity extends AppCompatActivity {
         mySnackbar.setAction("OK", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int score = 0;
-                if (new_game.getQuestion_1() == 1) { score += 20;}
-                if (new_game.getQuestion_2().contains("Beagle")) { score += 20;}
-                if (new_game.getQuestion_3() == "3") { score += 20; }
-                if (new_game.getQuestion_4() == 1) { score += 20; }
-                if (new_game.getQuestion_4() == 2) { score += 40; }
-                if (new_game.getQuestion_5() == 1) { score += 20; }
-                new_game.setScore(score);
+
                 helper.addGame(new_game);
                 Log.d("SUBMIT", "CONFIRMED");
+                Log.d("GAME SCORE", String.valueOf(new_game.getScore()));
                 Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                 intent.putExtra("ID", user_id);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
 
         quiz_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int score = 0;
+                String q2_et = q2.getText().toString();
+                new_game.setQuestion_2(q2_et);
+                Log.d("Q2",q2_et);
+                String q3_et = q3.getText().toString();
+                new_game.setQuestion_3(q3_et);
+                Log.d("Q3",q3_et);
+                if (new_game.getQuestion_1() == 1) { score += 20;}
+                if (new_game.getQuestion_2().contains("Beagle")) { score += 20;}
+                if (new_game.getQuestion_3().equals("3")) { score += 20; }
+                if (new_game.getQuestion_4() == 1) { score += 10; }
+                if (new_game.getQuestion_4() > 1) { score += 20; }
+                if (new_game.getQuestion_5() == 1) { score += 20; }
+                new_game.setScore(score);
+                Log.d("GAME SCORE", String.valueOf(new_game.getScore()));
                 mySnackbar.show();
             }
         });
 
-        q2.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                String q2_et = q2.getText().toString();
-                new_game.setQuestion_2(q2_et);
-                Log.d("Q2",q2_et);
-                return false;
-            }
-        });
-
-        q3.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                String q3_et = q3.getText().toString();
-                new_game.setQuestion_3(q3_et);
-                Log.d("Q3",q3_et);
-                return false;
-            }
-        });
+//        q2.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                String q2_et = q2.getText().toString();
+//                new_game.setQuestion_2(q2_et);
+//                Log.d("Q2",q2_et);
+//                return false;
+//            }
+//        });
+//
+//        q3.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                String q3_et = q3.getText().toString();
+//                new_game.setQuestion_3(q3_et);
+//                Log.d("Q3",q3_et);
+//                return false;
+//            }
+//        });
 
         iraq_btn.setOnClickListener(new View.OnClickListener() {
             @Override
